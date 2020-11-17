@@ -5,34 +5,132 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Calculator"
         mc:Ignorable="d"
-        Title="Calculator" Height="460" Width="339">
+        MinHeight="500" MinWidth="350" 
+        Title="Calculator" Height="500" Width="350"
+        Icon="calculator_logo.ico">
+
+    <Window.Resources>
+
+        <Style TargetType="Button" x:Key="all">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="numbers" BasedOn="{StaticResource all}">
+            <Setter Property="BorderBrush" Value="#FF191919" />
+            <Setter Property="Background" Value="#FF0A0A0A" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF282828"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="operators_and_special_btn" BasedOn="{StaticResource all}">
+            <Setter Property="BorderBrush" Value="#FF191919" />
+            <Setter Property="Background" Value="#FF0F0F0F" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF282828"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Button" x:Key="equals" BasedOn="{StaticResource all}">
+            <Setter Property="BorderBrush" Value="#FF191919" />
+            <Setter Property="Background" Value="#FF2F4B0E" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF4E8007"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Grid.Column" Value="0"/>
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Grid.ColumnSpan" Value="4"/>
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        </Style>
+    </Window.Resources>
+
     <Grid Name="gridWindow" Background="#FF191919">
-        <Label Content="0" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Height="92" Margin="0,16,3,0" VerticalAlignment="Top"  Width="Auto" Foreground="White" FontSize="50"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3.5*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
 
-        <Button Content="1" HorizontalAlignment="Left" Margin="3,303,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="2" HorizontalAlignment="Left" Margin="85,303,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="3" HorizontalAlignment="Center" Margin="167,303,85,66" VerticalAlignment="Center" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="4" HorizontalAlignment="Left" Margin="3,239,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="5" HorizontalAlignment="Left" Margin="85,239,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="6" HorizontalAlignment="Left" Margin="167,239,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="7" HorizontalAlignment="Left" Margin="3,177,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="8" HorizontalAlignment="Left" Margin="85,177,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="9" HorizontalAlignment="Left" Margin="167,177,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="0" HorizontalAlignment="Left" Margin="85,0,0,3" VerticalAlignment="Bottom" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
+        <Label Name="input_show" Content="0" VerticalAlignment="Bottom" Foreground="White" FontSize="50" RenderTransformOrigin="0.514,0.39" Grid.ColumnSpan="4" Margin="0,0,0,8" Width="332" />
 
-        <Button Content="/" HorizontalAlignment="Left" Margin="249,113,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
-        <Button Content="*" HorizontalAlignment="Left" Margin="249,177,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
-        <Button Content="-" HorizontalAlignment="Left" Margin="249,239,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
-        <Button Content="+" HorizontalAlignment="Right" Margin="0,303,3,66" VerticalAlignment="Center" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
-        <Button Content="=" HorizontalAlignment="Right" Margin="0,0,3,3" VerticalAlignment="Bottom" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
+        <Label Name="contentBox" Content="" VerticalAlignment="Top" Foreground="#FFA8A8A8" FontSize="15" Width="332" />
 
-        <Button Content="AC" HorizontalAlignment="Left" Margin="3,113,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
-        <Button Content="%" HorizontalAlignment="Left" Margin="85,113,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
-        <Button Content="&lt;-" HorizontalAlignment="Left" Margin="167,113,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0F0F0F" Background="#FF0F0F0F" Foreground="White" FontSize="20"/>
+        <Button Name="btn_1" Grid.Column="0" Grid.Row="5" Style="{StaticResource numbers}" Content="1" Click="btn_number_Click" />
+        <Button Name="btn_2" Grid.Column="1" Grid.Row="5" Style="{StaticResource numbers}" Content="2" Click="btn_number_Click" />
+        <Button Name="btn_3" Grid.Column="2" Grid.Row="5" Style="{StaticResource numbers}" Content="3" Click="btn_number_Click" />
+        <Button Name="btn_4" Grid.Column="0" Grid.Row="4" Style="{StaticResource numbers}" Content="4" Click="btn_number_Click" />
+        <Button Name="btn_5" Grid.Column="1" Grid.Row="4" Style="{StaticResource numbers}" Content="5" Click="btn_number_Click" />
+        <Button Name="btn_6" Grid.Column="2" Grid.Row="4" Style="{StaticResource numbers}" Content="6" Click="btn_number_Click" />
+        <Button Name="btn_7" Grid.Column="0" Grid.Row="3" Style="{StaticResource numbers}" Content="7" Click="btn_number_Click" />
+        <Button Name="btn_8" Grid.Column="1" Grid.Row="3" Style="{StaticResource numbers}" Content="8" Click="btn_number_Click" />
+        <Button Name="btn_9" Grid.Column="2" Grid.Row="3" Style="{StaticResource numbers}" Content="9" Click="btn_number_Click" />
+        <Button Name="btn_0" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource numbers}" Content="0" Click="btn_number_Click" />
 
-        <Button Content="+/-" HorizontalAlignment="Left" Margin="3,366,0,0" VerticalAlignment="Top" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
-        <Button Content="." HorizontalAlignment="Center" Margin="167,0,85,3" VerticalAlignment="Bottom" Width="79" Height="60" BorderBrush="#FF0A0A0A" Background="#FF0A0A0A" Foreground="White" FontSize="20"/>
+        <Button Name="btn_plus_minus" Grid.Column="1" Grid.Row="2" Style="{StaticResource operators_and_special_btn}" Content="+/-" Click="btn_plus_minus_Click" />
+        <Button Name="btn_dot" Grid.Column="2" Grid.Row="6" Style="{StaticResource numbers}" Content="." Click="btn_dot_Click" />
+        <Button Name="btn_AC" Grid.Column="0" Grid.Row="2" Style="{StaticResource operators_and_special_btn}" Content="AC" Click="btn_AC_Click" />
+        <Button Name="btn_percent" Grid.Column="2" Grid.Row="2" Style="{StaticResource operators_and_special_btn}" Content="%" Click="btn_percent_Click" />
 
+        <Button Name="btn_div" Grid.Column="3" Grid.Row="2" Style="{StaticResource operators_and_special_btn}" Content="&#247;" FontSize="30" Click="btn_operator_Click" />
+        <Button Name="btn_mult" Grid.Column="3" Grid.Row="3" Style="{StaticResource operators_and_special_btn}" Content="x" FontSize="25" Click="btn_operator_Click" />
+        <Button Name="btn_minus" Grid.Column="3" Grid.Row="4" Style="{StaticResource operators_and_special_btn}" Content="-" FontSize="40" Click="btn_operator_Click" />
+        <Button Name="btn_plus" Grid.Column="3" Grid.Row="5" Style="{StaticResource operators_and_special_btn}" Content="+" FontSize="25" Click="btn_operator_Click" />
+
+        <Button Name="btn_equals" Grid.Column="3" Grid.Row="6" Style="{StaticResource equals}" Content="="  Click="btn_equals_Click"/>
     </Grid>
 </Window>
     
